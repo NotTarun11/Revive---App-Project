@@ -41,6 +41,13 @@
                 android:layout_marginTop="32dp"
                 android:lineSpacingExtra="10dp"
                 android:textColor="@color/grey"/>
+
+            <Button
+                android:id="@+id/button"
+                style="@android:style/Widget.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
