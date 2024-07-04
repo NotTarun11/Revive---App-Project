@@ -47,7 +47,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.database)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -59,9 +59,10 @@ dependencies {
 
 //    ViewModel
     implementation("androidx.activity:activity-ktx:1.9.0")
-
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.code.gson:gson:2.9.1")
 
     implementation("com.tbuonomo:dotsindicator:5.0")
+    
+    implementation(libs.firebase.database)
 }
