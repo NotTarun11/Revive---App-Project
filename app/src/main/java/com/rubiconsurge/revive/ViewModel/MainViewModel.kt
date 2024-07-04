@@ -17,23 +17,25 @@ class MainViewModel():ViewModel() {
 
     private val _banner=MutableLiveData<List<SliderModel>>()
     private val _brand=MutableLiveData<MutableList<BrandModel>>()
+    private val _popular=MutableLiveData<MutableList<ItemModel>>()
 
     val brands: LiveData<MutableList<BrandModel>> = _brand
     val banners: LiveData<List<SliderModel>> = _banner
+    val popular: LiveData<MutableList<ItemModel>> = _popular
 
-    fun loadBanners(){
-        val Ref=firebaseDatabase.getReference("Banner")
-        Ref.addValueEventListener(object : ValueEventListener{
+    fun loadBanners() {
+        val Ref = firebaseDatabase.getReference("Banner")
+        Ref.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lists= mutableListOf<SliderModel>()
-                for (childSnapshot in snapshot.children){
-                    val list= childSnapshot.getValue(SliderModel::class.java)
-                    if (list!=null){
+                val lists = mutableListOf<SliderModel>()
+                for (childSnapshot in snapshot.children) {
+                    val list = childSnapshot.getValue(SliderModel::class.java)
+                    if (list != null) {
                         lists.add(list)
                     }
                 }
-                _banner.value= lists
+                _banner.value = lists
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -41,27 +43,6 @@ class MainViewModel():ViewModel() {
             }
 
         })
-
-//            fun loadPupolar(){
-//            val Ref=firebaseDatabase.getReference("Items")
-//            Ref.addValueEventListener(object : ValueEventListener{
-//
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    val lists= mutableListOf<ItemModel>()
-//                    for (childSnapshot in snapshot.children){
-//                        val list= childSnapshot.getValue(ItemModel::class.java)
-//                        if (list!=null){
-//                            lists.add(list)
-//                        }
-//                    }
-//                    _banner.value= lists
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//
-//                }
-//
-//            })
     }
 
     fun loadBrand() {
@@ -77,6 +58,28 @@ class MainViewModel():ViewModel() {
                     }
                 }
                 _brand.value= lists
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
+
+    fun loadPupolar(){
+        val Ref=firebaseDatabase.getReference("Items")
+        Ref.addValueEventListener(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lists= mutableListOf<ItemModel>()
+                for (childSnapshot in snapshot.children){
+                    val list= childSnapshot.getValue(ItemModel::class.java)
+                    if (list!=null){
+                        lists.add(list)
+                    }
+                }
+                    _popular.value= lists
             }
 
             override fun onCancelled(error: DatabaseError) {

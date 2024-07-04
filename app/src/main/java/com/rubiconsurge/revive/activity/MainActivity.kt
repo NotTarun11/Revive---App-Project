@@ -6,11 +6,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.rubiconsurge.revive.Adapter.BrandAdapter
+import com.rubiconsurge.revive.Adapter.PopularAdapter
 import com.rubiconsurge.revive.Model.SliderModel
 import com.rubiconsurge.revive.R
 import com.rubiconsurge.revive.Adapter.SliderAdapter
@@ -31,6 +33,7 @@ class MainActivity : BaseActivity() {
 
         initBanner()
         initBrand()
+        initPopular()
         
         enableEdgeToEdge()
 
@@ -76,6 +79,16 @@ class MainActivity : BaseActivity() {
             binding.progressBarBanner.visibility=View.GONE
         })
         viewModel.loadBrand()
+    }
+
+    private fun initPopular(){
+        binding.progressBarPopular.visibility= View.VISIBLE
+        viewModel.popular.observe(this, Observer {
+            binding.viewPopular.layoutManager= GridLayoutManager(this@MainActivity,2)
+            binding.viewPopular.adapter=PopularAdapter(it)
+            binding.progressBarPopular.visibility=View.GONE
+        })
+        viewModel.loadPupolar()
     }
 
 }
