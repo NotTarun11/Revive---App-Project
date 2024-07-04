@@ -62,5 +62,6 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.code.gson:gson:2.9.1")
+
     implementation("com.tbuonomo:dotsindicator:5.0")
 }
