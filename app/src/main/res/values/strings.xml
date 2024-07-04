@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Revive</string>
-
+    <string name="intro_title">Step up your <font color="#6033ba"> game A world of Laptops</font></string>
+    <string name="intro_text">Browse the latest laptops from top brands\nGet personalized recommendations\nEnjoy fast, free shipping</string>
 </resources>
