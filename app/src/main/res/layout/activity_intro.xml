@@ -43,11 +43,24 @@
                 android:textColor="@color/grey"/>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/startBtn"
                 style="@android:style/Widget.Button"
+                android:layout_margin="32dp"
+                android:background="@drawable/purple_button_bg"
+                android:textColor="@color/white"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Let's Get Started"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:text="@string/intro_signin" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
