@@ -173,7 +173,7 @@
                     android:background="@drawable/grey_bg"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/btn_2"
-                    android:tint="@color/black"/>
+                    app:tint="@color/black" />
             </LinearLayout>
 
         </LinearLayout>

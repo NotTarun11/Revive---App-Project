@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.rubiconsurge.revive.Model.BrandModel
-import com.rubiconsurge.revive.Model.ItemModel
+import com.rubiconsurge.revive.Model.ItemsModel
 import com.rubiconsurge.revive.Model.SliderModel
 
 class MainViewModel():ViewModel() {
@@ -17,11 +17,11 @@ class MainViewModel():ViewModel() {
 
     private val _banner=MutableLiveData<List<SliderModel>>()
     private val _brand=MutableLiveData<MutableList<BrandModel>>()
-    private val _popular=MutableLiveData<MutableList<ItemModel>>()
+    private val _popular=MutableLiveData<MutableList<ItemsModel>>()
 
     val brands: LiveData<MutableList<BrandModel>> = _brand
     val banners: LiveData<List<SliderModel>> = _banner
-    val popular: LiveData<MutableList<ItemModel>> = _popular
+    val popular: LiveData<MutableList<ItemsModel>> = _popular
 
     fun loadBanners() {
         val Ref = firebaseDatabase.getReference("Banner")
@@ -72,9 +72,9 @@ class MainViewModel():ViewModel() {
         Ref.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lists= mutableListOf<ItemModel>()
+                val lists= mutableListOf<ItemsModel>()
                 for (childSnapshot in snapshot.children){
-                    val list= childSnapshot.getValue(ItemModel::class.java)
+                    val list= childSnapshot.getValue(ItemsModel::class.java)
                     if (list!=null){
                         lists.add(list)
                     }

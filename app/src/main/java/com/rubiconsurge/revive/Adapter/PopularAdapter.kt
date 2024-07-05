@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
-import com.rubiconsurge.revive.Model.ItemModel
-import com.rubiconsurge.revive.databinding.ViewholderBrandBinding
+import com.rubiconsurge.revive.Model.ItemsModel
+import com.rubiconsurge.revive.activity.DetailActivity
 import com.rubiconsurge.revive.databinding.ViewholderRecommendedBinding
 
-class PopularAdapter (val items:MutableList<ItemModel>):
+class PopularAdapter (val items:MutableList<ItemsModel>):
     RecyclerView.Adapter<PopularAdapter.ViewHolder>(){
     private var context:Context?=null
 
@@ -25,10 +25,10 @@ class PopularAdapter (val items:MutableList<ItemModel>):
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PopularAdapter.ViewHolder, position: Int) {
-        holder.binding.titleTxt.text=items[position].title
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.priceTxt.text="$"+items[position].price.toString()
         holder.binding.ratingTxt.text=items[position].rating.toString()
+        holder.binding.titleTxt.text=items[position].title
 
         val requestOptions= RequestOptions().transform(CenterCrop())
         Glide.with(holder.itemView.context)
@@ -36,9 +36,11 @@ class PopularAdapter (val items:MutableList<ItemModel>):
             .apply(requestOptions)
             .into(holder.binding.pic)
 
-//        holder.itemView.setOnClickListener {
-//            val intent=Intent(holder.itemView.context,)
-//        }
+        holder.itemView.setOnClickListener {
+            val intent= Intent(holder.itemView.context,DetailActivity::class.java)
+            intent.putExtra("object",items[position])
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = items.size

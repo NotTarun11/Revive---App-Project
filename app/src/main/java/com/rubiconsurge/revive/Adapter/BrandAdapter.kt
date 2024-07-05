@@ -32,7 +32,7 @@ class BrandAdapter(val items: MutableList<BrandModel>):
 
     override fun onBindViewHolder(holder: BrandAdapter.Viewholder, position: Int) {
         val item= items[position]
-        holder.binding.title.text=item.title
+        holder.binding.titleTxt.text=item.title
 
         Glide.with(holder.itemView.context)
             .load(item.picUrl)
@@ -45,7 +45,7 @@ class BrandAdapter(val items: MutableList<BrandModel>):
             notifyItemChanged(selectedPosition)
         }
 
-        holder.binding.title.setTextColor(context.resources.getColor(R.color.white))
+        holder.binding.titleTxt.setTextColor(context.resources.getColor(R.color.white))
         if(selectedPosition==position){
             holder.binding.pic.setBackgroundResource(0)
             holder.binding.mainLayout.setBackgroundResource(R.drawable.purple_bg)
@@ -54,7 +54,7 @@ class BrandAdapter(val items: MutableList<BrandModel>):
                 ColorStateList.valueOf(context.getColor(R.color.white))
             )
 
-            holder.binding.title.visibility=View.VISIBLE
+            holder.binding.titleTxt.visibility=View.VISIBLE
         }
         else{
             holder.binding.pic.setBackgroundResource(R.drawable.grey_bg)
@@ -64,7 +64,7 @@ class BrandAdapter(val items: MutableList<BrandModel>):
                 ColorStateList.valueOf(context.getColor(R.color.black))
             )
 
-            holder.binding.title.visibility=View.GONE
+            holder.binding.titleTxt.visibility=View.GONE
         }
     }
 

@@ -12,29 +12,28 @@ import com.rubiconsurge.revive.Model.BrandModel
 import com.rubiconsurge.revive.R
 import com.rubiconsurge.revive.databinding.ViewholderBrandBinding
 import com.rubiconsurge.revive.databinding.ViewholderColorBinding
+import com.rubiconsurge.revive.databinding.ViewholderSizeBinding
 
 
-class ColorAdapter(val items: MutableList<String>):
-    RecyclerView.Adapter<ColorAdapter.Viewholder>() {
+class SizeAdapter(val items: MutableList<String>):
+    RecyclerView.Adapter<SizeAdapter.Viewholder>() {
         private var selectedPosition=-1
         private var lastSelectedPosition=-1
         private lateinit var context: Context
 
-        class Viewholder(val binding: ViewholderColorBinding):
+        class Viewholder(val binding: ViewholderSizeBinding):
             RecyclerView.ViewHolder(binding.root) {
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorAdapter.Viewholder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SizeAdapter.Viewholder {
         context=parent.context
-        val binding=ViewholderColorBinding.inflate(LayoutInflater.from(context),parent,false)
+        val binding=ViewholderSizeBinding.inflate(LayoutInflater.from(context),parent,false)
         return Viewholder(binding)
     }
 
-    override fun onBindViewHolder(holder: ColorAdapter.Viewholder, position: Int) {
-        Glide.with(holder.itemView.context)
-            .load(items[position])
-            .into(holder.binding.pic)
+    override fun onBindViewHolder(holder: SizeAdapter.Viewholder, position: Int) {
+        holder.binding.sizeTxt.text = items[position]
 
         holder.binding.root.setOnClickListener{
             lastSelectedPosition=selectedPosition
@@ -45,9 +44,11 @@ class ColorAdapter(val items: MutableList<String>):
 
         if(selectedPosition==position){
             holder.binding.colorLayout.setBackgroundResource(R.drawable.grey_bg_selected)
+            holder.binding.sizeTxt.setTextColor(context.resources.getColor(R.color.purple))
         }
         else{
             holder.binding.colorLayout.setBackgroundResource(R.drawable.grey_bg)
+            holder.binding.sizeTxt.setTextColor(context.resources.getColor(R.color.black))
         }
     }
 
